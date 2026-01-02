@@ -8,7 +8,7 @@ const emailTemplates = require('./email/emailTamplate');
 const emailConfig = require('./email/email')
 const xlsx = require('xlsx');
 
-const PORT = process.env.SERVER_PORT || 8080;
+
 
 const app = express();
 const http = require('http');
