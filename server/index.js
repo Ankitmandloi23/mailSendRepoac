@@ -10,6 +10,8 @@ const xlsx = require('xlsx');
 
 
 const app = express();
+const http = require('http');
+const server = http.createServer(app);
 app.use(cors());
 app.use(express.json());
 
@@ -110,6 +112,6 @@ async function sendBulkEmails(recipients, template, recipientsCount) {
     }
 }
 
-app.listen(5000, () => {
+server.listen(5000, () => {
     console.log('Server is running on http://localhost:5000');
 });
