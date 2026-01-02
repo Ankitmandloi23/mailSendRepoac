@@ -112,6 +112,18 @@ async function sendBulkEmails(recipients, template, recipientsCount) {
     }
 }
 
-server.listen(5000, () => {
-    console.log('Server is running on http://localhost:5000');
-});
+
+const startServer = async () => {
+    try {
+
+        server.listen(PORT, () => {
+            console.log(` ✅ Server is ready to listen on port ${PORT}`);
+        });
+
+    } catch (err) {
+        console.error(`❌Someting Went Wrong in Start Server, Error is  ${err}`);
+        process.exit(1);
+    }
+}
+
+startServer();
