@@ -5,6 +5,8 @@ const app = express();
 const http = require('http');
 const PORT = 8080;
 const server = http.createServer(app);
+const env = require("dotenv");
+env.config();
 app.use(cors());
 app.use(express.json());
 
