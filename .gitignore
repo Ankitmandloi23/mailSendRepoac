@@ -11,6 +11,8 @@ logs
 # dotenv environment variables file
 .env
 .env.test
+.env.development
+
 
 # vite build output
 dist/
