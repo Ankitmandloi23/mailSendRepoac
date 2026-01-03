@@ -27,7 +27,6 @@ function EmailTriggerPage() {
         setLoading(true);
 
         try {
-
             await axios.post(`${process.env.REACT_APP_BASE_URL}/send-emails`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
