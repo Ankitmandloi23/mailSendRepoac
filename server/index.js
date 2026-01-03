@@ -31,7 +31,6 @@ app.use("/api", routes);
 
 const startServer = async () => {
   try {
-    await dbConnection();
     server.listen(PORT, () => {
       console.log(` ✅ Server is ready to listen on port ${PORT}`);
     });
