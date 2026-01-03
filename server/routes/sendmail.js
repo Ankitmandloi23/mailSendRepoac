@@ -43,11 +43,12 @@ exports.parseExcel = (excelPath, recipients) => {
 
 
 // Route to handle email sending
-exports.sendEmails = async () => {
+exports.sendEmails = async (req,res) => {
     try {
 
 
         const { template, recipientsCount } = req.body;
+        
         const csvPath = req.file.path;
 
         const recipients = [];

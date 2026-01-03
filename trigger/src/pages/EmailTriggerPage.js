@@ -17,8 +17,8 @@ function EmailTriggerPage() {
 
     const handleSubmit = async () => {
         const formData = new FormData();
-        console.log("template", template)
-        console.log("recipientsCount", recipientsCount)
+        // console.log("template", template)
+        // console.log("recipientsCount", recipientsCount)
 
         formData.append('template', template);
         formData.append('recipientsCount', recipientsCount);
