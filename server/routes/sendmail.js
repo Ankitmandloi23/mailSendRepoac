@@ -58,10 +58,10 @@ exports.sendEmails = async (req,res) => {
 
         if (fileExtension === 'csv') {
             // Parse CSV file
-            await parseCSV(csvPath, recipients);
+            await this.parseCSV(csvPath, recipients);
         } else if (fileExtension === 'xlsx' || fileExtension === 'xls') {
             // Parse Excel file
-            await parseExcel(csvPath, recipients);
+            await this.parseExcel(csvPath, recipients);
         } else {
             return res.status(400).send('Invalid file format. Please upload a CSV or Excel file.');
         }
