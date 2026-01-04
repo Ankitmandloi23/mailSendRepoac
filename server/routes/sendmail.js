@@ -3,7 +3,7 @@ const nodemailer = require('nodemailer');
 const csvParser = require('csv-parser');
 const fs = require('fs');
 const emailTemplates = require('../email/emailTamplate');
-const emailConfig = require('../email/email')
+const emailConfig = require('../email/emailConfig')
 const xlsx = require('xlsx');
 
 
@@ -74,7 +74,7 @@ exports.sendEmails = async (req,res) => {
 
 
         // Send the bulk emails asynchronously
-        await this.sendBulkEmails(recipients, template, recipientsCount);
+       await this.sendBulkEmails(recipients, template, recipientsCount);
 
         res.send('Emails sent successfully');
     } catch (err) {
@@ -98,6 +98,6 @@ exports.sendBulkEmails = async (recipients, template, recipientsCount) => {
         console.log(`Email sent: ${info.response}`);
     } catch (e) {
         console.log("some error", e);
-
+        throw new Error(e);
     }
 }
