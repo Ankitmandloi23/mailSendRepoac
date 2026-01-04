@@ -74,7 +74,7 @@ exports.sendEmails = async (req,res) => {
 
 
         // Send the bulk emails asynchronously
-        await sendBulkEmails(recipients, template, recipientsCount);
+        await this.sendBulkEmails(recipients, template, recipientsCount);
 
         res.send('Emails sent successfully');
     } catch (err) {
