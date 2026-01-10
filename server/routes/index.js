@@ -1,14 +1,14 @@
 const express = require("express");
-const sendController = require("./sendmail.js");
-const multer = require('multer');
-
-
-const upload = multer({ dest: '/tmp/uploads/' });
 const router = express.Router();
+const authRoutes = require('./auth.routes.js');
+const emailRoutes = require('./emails.routes.js');
 
 
 
-router.use("/send-emails", upload.single('csvFile'), sendController.sendEmails);
+
+router.use('/auth', authRoutes);
+router.use('/emails', emailRoutes);
+
 
 
 

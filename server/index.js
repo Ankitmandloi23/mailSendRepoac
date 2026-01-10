@@ -6,13 +6,14 @@ const server = http.createServer(app);
 const PORT = process.env.SERVER_PORT || 8080;
 const cors = require('cors');
 const routes = require("./routes/index.js");
+const { dbConnect } = require("./db.js");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 
 app.use(cors({
-  origin: process.env.CORS_ORIGIN || '*',
+  origin: '*',
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
   credentials: true,
 }));
@@ -27,6 +28,7 @@ if (process.env.NODE_ENV !== 'production') {
 // Routes
 app.use("/api", routes);
 
+dbConnect();
 
 
 const startServer = async () => {
