@@ -105,7 +105,7 @@ exports.sendEmailTemplate = (recipientEmail, template) => {
 
         <!-- Facebook -->
         <td style="padding:0 8px;">
-          <a href="https://facebook.com/frozaacart" target="_blank">
+          <a href="https://www.facebook.com/profile.php?id=61583297343141" target="_blank">
             <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png"
                  width="26" height="26"
                  alt="Facebook"
@@ -236,7 +236,7 @@ exports.sendEmailTemplate = (recipientEmail, template) => {
 
         <!-- Facebook -->
         <td style="padding:0 8px;">
-          <a href="https://facebook.com/frozaacart" target="_blank">
+          <a href="https://www.facebook.com/profile.php?id=61583297343141" target="_blank">
             <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png"
                  width="26" height="26"
                  alt="Facebook"
@@ -369,7 +369,7 @@ exports.sendEmailTemplate = (recipientEmail, template) => {
 
         <!-- Facebook -->
         <td style="padding:0 8px;">
-          <a href="https://facebook.com/frozaacart" target="_blank">
+          <a href="https://www.facebook.com/profile.php?id=61583297343141" target="_blank">
             <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png"
                  width="26" height="26"
                  alt="Facebook"
