@@ -4,7 +4,7 @@ import './EmailTriggerPage.css'
 
 
 function EmailTriggerPage() {
-    const [template, setTemplate] = useState('');
+    const [template, setTemplate] = useState('notifyTemplate');
     const [recipientsCount, setRecipientsCount] = useState(1);
     const [loading, setLoading] = useState(false);
     //   const [senderEmail, setSenderEmail] = useState('');
@@ -21,7 +21,7 @@ function EmailTriggerPage() {
         // console.log("recipientsCount", recipientsCount)
 
         formData.append('template', template);
-        formData.append('recipientsCount', recipientsCount);
+        formData.append('limitOfRecipientsEmail', recipientsCount);
         // formData.append('senderEmail', senderEmail);
         formData.append('csvFile', csvFile);
         setLoading(true);
@@ -54,15 +54,13 @@ function EmailTriggerPage() {
                     onChange={(e) => setTemplate(e.target.value)}
                     className="form-control"
                 >
-                    <option value="templateOne">Template 1</option>
-                    <option value="templateTwo">Template 2</option>
-                    <option value="templateThree">Template 3</option>
-                    <option value="templateFour">Template 4</option>
+                    <option value="notifyTemplate">Notify Template</option>
+                    <option value="launchTemplate">Lanuch Template</option>
                 </select>
             </div>
 
             <div className="form-group">
-                <label htmlFor="recipientsCount">Number of Recipients:</label>
+                <label htmlFor="recipientsCount">Limit of Recipients email:</label>
                 <select
                     id="recipientsCount"
                     value={recipientsCount}

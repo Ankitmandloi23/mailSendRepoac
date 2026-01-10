@@ -43,25 +43,25 @@ exports.parseExcel = (excelPath, recipients) => {
 
 
 // Route to handle email sending
-exports.sendEmails = async (req,res) => {
+exports.sendEmails = async (req, res) => {
     try {
 
 
-        const { template, recipientsCount } = req.body;
-        
+        const { template, limitOfRecipientsEmail } = req.body;
+
         const csvPath = req.file.path;
 
-        const recipients = [];
+        const recipientsFromFile = [];
 
 
         const fileExtension = req.file.originalname.split('.').pop().toLowerCase();
 
         if (fileExtension === 'csv') {
             // Parse CSV file
-            await this.parseCSV(csvPath, recipients);
+            await this.parseCSV(csvPath, recipientsFromFile);
         } else if (fileExtension === 'xlsx' || fileExtension === 'xls') {
             // Parse Excel file
-            await this.parseExcel(csvPath, recipients);
+            await this.parseExcel(csvPath, recipientsFromFile);
         } else {
             return res.status(400).send('Invalid file format. Please upload a CSV or Excel file.');
         }
@@ -73,8 +73,8 @@ exports.sendEmails = async (req,res) => {
 
 
 
-        // Send the bulk emails asynchronously
-       await this.sendBulkEmails(recipients, template, recipientsCount);
+        // Send the bulk emails asynchronously        
+        await this.sendBulkEmails(recipientsFromFile, template, limitOfRecipientsEmail);
 
         res.send('Emails sent successfully');
     } catch (err) {
@@ -84,20 +84,23 @@ exports.sendEmails = async (req,res) => {
 };
 
 // Function to send emails
-exports.sendBulkEmails = async (recipients, template, recipientsCount) => {
+exports.sendBulkEmails = async (recipientsFromFile, template, limitOfRecipientsEmail) => {
     try {
         // console.log(recipients)
 
         const transporter = nodemailer.createTransport(emailConfig);
 
+        const limitedRecipients = recipientsFromFile.length >= limitOfRecipientsEmail ?  recipientsFromFile.slice(0, limitOfRecipientsEmail) : recipientsFromFile;
+        console.log(limitedRecipients.length, "limitedRecipients");
+        
+        for (const recipientEmail of limitedRecipients) {
+            let mailOptions = emailTemplates.sendEmailTemplate(recipientEmail, template);
 
-        let mailOptions = emailTemplates.sendEmailTemplate(recipients, template, recipientsCount);
-
-
-        const info = await transporter.sendMail(mailOptions);
-        console.log(`Email sent: ${info.response}`);
-    } catch (e) {
-        console.log("some error", e);
-        throw new Error(e);
+            await transporter.sendMail(mailOptions);
+            console.log(`Email sent to: ${recipientEmail}`);
+        }
+    } catch (err) {
+        console.error("Bulk email error:", err);
+        throw new Error(err);
     }
 }
