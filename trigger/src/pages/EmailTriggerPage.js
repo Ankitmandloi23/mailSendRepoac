@@ -15,14 +15,15 @@ function EmailTriggerPage() {
         setCsvFile(file);
     };
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (e) => {
+      
+
         const formData = new FormData();
-        // console.log("template", template)
-        // console.log("recipientsCount", recipientsCount)
+      
 
         formData.append('template', template);
         formData.append('limitOfRecipientsEmail', recipientsCount);
-        // formData.append('senderEmail', senderEmail);
+     
         formData.append('csvFile', csvFile);
         setLoading(true);
 
@@ -98,7 +99,7 @@ function EmailTriggerPage() {
                 />
             </div>
 
-            <button className="submit-btn" onClick={handleSubmit}>{loading ? "sanding" : "Send Emails"}</button>
+            <button className="submit-btn" onClick={handleSubmit} disabled={loading}>{loading ? "Sanding..." : "Send Emails"}</button>
         </div>
     );
 }
