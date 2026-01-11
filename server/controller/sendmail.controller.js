@@ -90,17 +90,20 @@ exports.sendBulkEmails = async (recipientsFromFile, template, limitOfRecipientsE
 
         const transporter = nodemailer.createTransport(emailConfig);
 
-        const limitedRecipients = recipientsFromFile.length >= limitOfRecipientsEmail ?  recipientsFromFile.slice(0, limitOfRecipientsEmail) : recipientsFromFile;
+        const limitedRecipients = recipientsFromFile.length >= limitOfRecipientsEmail ? recipientsFromFile.slice(0, limitOfRecipientsEmail) : recipientsFromFile;
         console.log(limitedRecipients.length, "limitedRecipients");
-        
+
+        const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+
         for (const recipientEmail of limitedRecipients) {
             let mailOptions = emailTemplates.sendEmailTemplate(recipientEmail, template);
-
             await transporter.sendMail(mailOptions);
+
             console.log(`Email sent to: ${recipientEmail}`);
+            await sleep(1500); // 1.5 seconds delay
         }
     } catch (err) {
-        console.error("Bulk email error:", err);
-        throw new Error(err);
+        console.error(`Failed: ${recipientEmail}`, err.message);
+        // throw new Error(err);
     }
 }
